@@ -2,7 +2,7 @@
 
 <span class="img_container center" style="display: block;">
     <p align="center">
-    <img alt="RigL main image" height=350 src="./img/fig.pdf" style="display:block; margin-left: auto; margin-right: auto;" title="caption" />
+    <img alt="RigL main image" height=350 src="./img/fig.png" style="display:block; margin-left: auto; margin-right: auto;" title="caption" />
     <br />
     <span class="img_caption" style="display: block; text-align: center;">Test accuracy and ECE value at different sparsities.</span>
     </p>
