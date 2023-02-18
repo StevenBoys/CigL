@@ -1,0 +1,34 @@
+defaults:
+  - masking: SNFS
+  - dataset: CIFAR10
+  - optimizer: SGD
+  - hydra
+  - override hydra/launcher: joblib
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+exp_name: ${masking.name}
+seed: 0
+multi_seed: []
+model: wrn-22-2
+
+# Train args
+device: cuda # cpu or cuda
+
+# Logging, Saving, Resuming
+log_interval: 100
+ckpt_dir: ckpts
+ckpt_interval: ${optimizer.epochs} # Dont save any intermediate weights, just final
+val_interval: 1
+resume: True
+begin_save: 200
+
+# W&B
+wandb:
+  use: False
+  api_key: ${hydra:runtime.cwd}/wandb_api.key
+  entity: ml-reprod-2020
+  project: cifar10
+  name: ${exp_name}
+
+wandb_api_key: ${hydra:runtime.cwd}/wandb_api.key

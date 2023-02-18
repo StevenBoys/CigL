@@ -1,0 +1,30 @@
+# Hydra configs
+hydra:
+  run:
+    dir: ./outputs/${dataset.name}/${exp_name}/${masking.density}/${hydra.job.override_dirname}
+  sweep:
+    dir: ./outputs/${dataset.name}/${exp_name}/${masking.density}
+    subdir: ${hydra.job.override_dirname}
+  job_logging:
+    handlers:
+      console:
+        class: sparselearning.utils.tqdm_logging.TqdmLoggingHandler
+      file:
+        mode: w # comment if you dont want to overwrite
+    root:
+      handlers:
+        - file
+        - console
+  job:
+    config:
+      override_dirname:
+        exclude_keys:
+          - exp_name
+          - dataset
+          - masking
+          - masking.density
+          - masking.sparse_init
+          - masking.print_FLOPs
+          - optimizer
+          - hydra.verbose
+          - wandb.use
